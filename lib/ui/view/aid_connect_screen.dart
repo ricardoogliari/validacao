@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/data/repositories/remote_stories_repository.dart';
+import 'package:validacao/ui/view/profile_screen.dart';
+import 'package:validacao/ui/view/sign_in_screen.dart';
 import 'package:validacao/ui/view_models/home_view_model.dart';
 import 'package:validacao/ui/widgets/detail.dart';
 import 'package:validacao/ui/widgets/empty_state.dart';
@@ -108,63 +109,17 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   }
 
   void _navigateToProfile() {
-    Navigator.push(
-      context,
-      MaterialPageRoute<ProfileScreen>(
-        builder: (context) => ProfileScreen(
-          appBar: AppBar(
-            title: Text(
-              'User Profile',
-              style: GoogleFonts.inter(fontWeight: FontWeight.bold),
-            ),
-            backgroundColor: Colors.white,
-            foregroundColor: textPrimaryColor,
-            elevation: 0,
-          ),
-          actions: [
-            SignedOutAction((context) {
-              Navigator.of(context).pop();
-            }),
-          ],
-          children: [
-            const Divider(),
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: AspectRatio(
-                aspectRatio: 1.5,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: surfaceColor,
-                    borderRadius: BorderRadius.circular(24),
-                  ),
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(
-                        Icons.favorite_rounded,
-                        color: primaryTeal,
-                        size: 64,
-                      ),
-                      const SizedBox(height: 16),
-                      Text(
-                        'Thank you for being part of AidConnect!',
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.inter(
-                          fontWeight: FontWeight.bold,
-                          color: textPrimaryColor,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    if (_currentUser == null) {
+      Navigator.push(
+        context,
+        MaterialPageRoute<SignInScreen>(builder: (context) => SignInScreen()),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute<ProfileScreen>(builder: (context) => ProfileScreen()),
+      );
+    }
   }
 
   void _selectCategory({required String section}) {
