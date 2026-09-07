@@ -35,7 +35,7 @@ class _FilterSectionsState extends State<FilterSections> {
             style: GoogleFonts.inter(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF0F172A),
+              color: textPrimaryColor,
             ),
           ),
         ),
@@ -62,19 +62,15 @@ class _FilterSectionsState extends State<FilterSections> {
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
-                        color: isSelected
-                            ? const Color(0xFF2BEECD)
-                            : Colors.white,
+                        color: isSelected ? primaryTeal : Colors.white,
                         borderRadius: BorderRadius.circular(24),
                         border: Border.all(
-                          color: isSelected
-                              ? const Color(0xFF2BEECD)
-                              : const Color(0xFFE2E8F0),
+                          color: isSelected ? primaryTeal : borderColor,
                         ),
                         boxShadow: isSelected
                             ? [
                                 const BoxShadow(
-                                  color: Color(0x0D000000),
+                                  color: shadowColor,
                                   blurRadius: 1,
                                   offset: Offset(0, 1),
                                 ),
@@ -89,8 +85,8 @@ class _FilterSectionsState extends State<FilterSections> {
                             cat.icon,
                             size: 16,
                             color: isSelected
-                                ? const Color(0xFF0F172A)
-                                : const Color(0xFF475569),
+                                ? textPrimaryColor
+                                : textSecondaryColor,
                           ),
                           const SizedBox(width: 8),
                           Text(
@@ -101,8 +97,8 @@ class _FilterSectionsState extends State<FilterSections> {
                                   ? FontWeight.bold
                                   : FontWeight.w500,
                               color: isSelected
-                                  ? const Color(0xFF0F172A)
-                                  : const Color(0xFF334155),
+                                  ? textPrimaryColor
+                                  : textDarkColor,
                             ),
                           ),
                         ],

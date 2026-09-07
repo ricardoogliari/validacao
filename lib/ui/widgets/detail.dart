@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
+import 'package:validacao/utils/constants.dart';
 
 class Detail extends StatelessWidget {
   const Detail({super.key, required this.story});
@@ -25,16 +26,16 @@ class Detail extends StatelessWidget {
                   fit: BoxFit.cover,
                   placeholder: (context, url) => Container(
                     height: 250,
-                    color: const Color(0xFFE2E8F0),
+                    color: borderColor,
                     child: const Center(child: CircularProgressIndicator()),
                   ),
                   errorWidget: (context, url, error) => Container(
                     height: 250,
-                    color: const Color(0xFFE2E8F0),
+                    color: borderColor,
                     child: const Icon(
                       Icons.broken_image,
                       size: 50,
-                      color: Color(0xFF94A3B8),
+                      color: iconMutedColor,
                     ),
                   ),
                 ),
@@ -42,9 +43,9 @@ class Detail extends StatelessWidget {
                   top: 16,
                   right: 16,
                   child: CircleAvatar(
-                    backgroundColor: Colors.white.withOpacity(0.9),
+                    backgroundColor: Colors.white.withValues(alpha: 0.9),
                     child: IconButton(
-                      icon: const Icon(Icons.close, color: Color(0xFF0F172A)),
+                      icon: const Icon(Icons.close, color: textPrimaryColor),
                       onPressed: () => Navigator.pop(context),
                     ),
                   ),
@@ -81,7 +82,7 @@ class Detail extends StatelessWidget {
                     style: GoogleFonts.inter(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF0F172A),
+                      color: textPrimaryColor,
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -89,7 +90,7 @@ class Detail extends StatelessWidget {
                     story.description,
                     style: GoogleFonts.inter(
                       fontSize: 15,
-                      color: const Color(0xFF475569),
+                      color: textSecondaryColor,
                       height: 1.6,
                     ),
                   ),
@@ -110,18 +111,18 @@ class Detail extends StatelessWidget {
                                   : Icons.favorite_border_rounded,
                               color: story.hasLiked
                                   ? Colors.red
-                                  : const Color(0xFF475569),
+                                  : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
                               '${story.likesCount}',
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFF334155),
+                                color: textDarkColor,
                               ),
                             ),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFFE2E8F0)),
+                              side: const BorderSide(color: borderColor),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
@@ -143,18 +144,18 @@ class Detail extends StatelessWidget {
                                   : Icons.report_gmailerrorred_rounded,
                               color: story.isReported
                                   ? Colors.orange
-                                  : const Color(0xFF475569),
+                                  : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
                               story.isReported ? 'Reported' : 'Report',
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.bold,
-                                color: const Color(0xFF334155),
+                                color: textDarkColor,
                               ),
                             ),
                             style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Color(0xFFE2E8F0)),
+                              side: const BorderSide(color: borderColor),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),

@@ -114,7 +114,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
               style: GoogleFonts.inter(fontWeight: FontWeight.bold),
             ),
             backgroundColor: Colors.white,
-            foregroundColor: const Color(0xFF0F172A),
+            foregroundColor: textPrimaryColor,
             elevation: 0,
           ),
           actions: [
@@ -130,7 +130,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                 aspectRatio: 1.5,
                 child: Container(
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF1F5F9),
+                    color: surfaceColor,
                     borderRadius: BorderRadius.circular(24),
                   ),
                   padding: const EdgeInsets.all(24),
@@ -139,7 +139,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                     children: [
                       const Icon(
                         Icons.favorite_rounded,
-                        color: Color(0xFF2BEECD),
+                        color: primaryTeal,
                         size: 64,
                       ),
                       const SizedBox(height: 16),
@@ -148,7 +148,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                         textAlign: TextAlign.center,
                         style: GoogleFonts.inter(
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF0F172A),
+                          color: textPrimaryColor,
                           fontSize: 16,
                         ),
                       ),
@@ -172,7 +172,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF6F8F8),
+      backgroundColor: appBackgroundColor,
       body: ListenableBuilder(
         listenable: _viewModel,
         builder: (context, child) {
@@ -215,7 +215,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                                 style: GoogleFonts.inter(
                                   fontSize: 16,
                                   fontWeight: FontWeight.bold,
-                                  color: const Color(0xFF475569),
+                                  color: textSecondaryColor,
                                 ),
                               ),
                             ),

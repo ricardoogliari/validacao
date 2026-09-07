@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
+import 'package:validacao/utils/constants.dart';
 
 class StoryCard extends StatelessWidget {
   const StoryCard({
@@ -23,7 +24,7 @@ class StoryCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE2E8F0), width: 1),
+        border: Border.all(color: borderColor, width: 1),
       ),
       clipBehavior: Clip.antiAlias,
       child: Column(
@@ -37,15 +38,15 @@ class StoryCard extends StatelessWidget {
               imageUrl: story.imageUrl,
               fit: BoxFit.cover,
               placeholder: (context, url) => Container(
-                color: const Color(0xFFE2E8F0),
+                color: borderColor,
                 child: const Center(child: CircularProgressIndicator()),
               ),
               errorWidget: (context, url, error) => Container(
-                color: const Color(0xFFE2E8F0),
+                color: borderColor,
                 child: const Icon(
                   Icons.broken_image,
                   size: 40,
-                  color: Color(0xFF94A3B8),
+                  color: iconMutedColor,
                 ),
               ),
             ),
@@ -80,7 +81,7 @@ class StoryCard extends StatelessWidget {
                         style: GoogleFonts.inter(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          color: const Color(0xFF0F172A),
+                          color: textPrimaryColor,
                         ),
                       ),
                       const SizedBox(height: 6),
@@ -91,7 +92,7 @@ class StoryCard extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: const Color(0xFF64748B),
+                          color: textMutedColor,
                           height: 1.4,
                         ),
                       ),
@@ -110,7 +111,7 @@ class StoryCard extends StatelessWidget {
                                   : Icons.favorite_border_rounded,
                               color: story.hasLiked
                                   ? Colors.red
-                                  : const Color(0xFF64748B),
+                                  : textMutedColor,
                             ),
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(),
@@ -125,7 +126,7 @@ class StoryCard extends StatelessWidget {
                                   : Icons.report_gmailerrorred_rounded,
                               color: story.isReported
                                   ? Colors.orange
-                                  : const Color(0xFF64748B),
+                                  : textMutedColor,
                             ),
                             padding: EdgeInsets.zero,
                             constraints: const BoxConstraints(),
@@ -138,7 +139,7 @@ class StoryCard extends StatelessWidget {
                       OutlinedButton(
                         onPressed: () => onShowDetails(story: story),
                         style: OutlinedButton.styleFrom(
-                          side: const BorderSide(color: Color(0xFF2BEECD)),
+                          side: const BorderSide(color: primaryTeal),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
                           ),
@@ -152,7 +153,7 @@ class StoryCard extends StatelessWidget {
                           style: GoogleFonts.inter(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
-                            color: const Color(0xFF0D9488),
+                            color: darkTeal,
                           ),
                         ),
                       ),

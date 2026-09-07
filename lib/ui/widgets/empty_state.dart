@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:validacao/utils/constants.dart';
 
 class EmptyState extends StatelessWidget {
   const EmptyState({super.key});
@@ -12,31 +13,24 @@ class EmptyState extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFE2E8F0)),
+        border: Border.all(color: borderColor),
       ),
       child: Column(
         children: [
-          const Icon(
-            Icons.search_off_rounded,
-            size: 64,
-            color: Color(0xFF94A3B8),
-          ),
+          const Icon(Icons.search_off_rounded, size: 64, color: iconMutedColor),
           const SizedBox(height: 16),
           Text(
             'No Stories Found',
             style: GoogleFonts.inter(
               fontSize: 18,
               fontWeight: FontWeight.bold,
-              color: const Color(0xFF0F172A),
+              color: textPrimaryColor,
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'Try adjusting your search query or selected category.',
-            style: GoogleFonts.inter(
-              fontSize: 14,
-              color: const Color(0xFF64748B),
-            ),
+            style: GoogleFonts.inter(fontSize: 14, color: textMutedColor),
           ),
         ],
       ),

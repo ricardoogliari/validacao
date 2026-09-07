@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:validacao/utils/constants.dart';
 
 class Header extends StatefulWidget {
   const Header({
@@ -33,8 +34,8 @@ class _HeaderState extends State<Header> {
   Widget build(BuildContext context) {
     return Container(
       decoration: const BoxDecoration(
-        color: Color(0xFFF6F8F8),
-        border: Border(bottom: BorderSide(color: Color(0xFFE2E8F0), width: 1)),
+        color: appBackgroundColor,
+        border: Border(bottom: BorderSide(color: borderColor, width: 1)),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 12),
       child: Row(
@@ -48,12 +49,12 @@ class _HeaderState extends State<Header> {
                 width: 32,
                 height: 32,
                 decoration: BoxDecoration(
-                  color: const Color(0x332BEECD), // 20% opacity teal
+                  color: primaryTealLight,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: const Icon(
                   Icons.favorite_rounded,
-                  color: Color(0xFF0D9488),
+                  color: darkTeal,
                   size: 16,
                 ),
               ),
@@ -64,7 +65,7 @@ class _HeaderState extends State<Header> {
                 style: GoogleFonts.inter(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: const Color(0xFF0F172A),
+                  color: textPrimaryColor,
                   letterSpacing: -0.45,
                 ),
               ),
@@ -78,7 +79,7 @@ class _HeaderState extends State<Header> {
                 width: 256,
                 height: 40,
                 decoration: BoxDecoration(
-                  color: const Color(0xFFF1F5F9),
+                  color: surfaceColor,
                   borderRadius: BorderRadius.circular(24),
                 ),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -87,7 +88,7 @@ class _HeaderState extends State<Header> {
                     const Icon(
                       Icons.search,
                       size: 16,
-                      color: Color(0xFF64748B),
+                      color: textMutedColor,
                     ),
                     const SizedBox(width: 8),
                     Expanded(
@@ -101,13 +102,13 @@ class _HeaderState extends State<Header> {
                         },
                         style: GoogleFonts.inter(
                           fontSize: 14,
-                          color: const Color(0xFF0F172A),
+                          color: textPrimaryColor,
                         ),
                         decoration: InputDecoration(
                           hintText: 'Busque histórias...',
                           hintStyle: GoogleFonts.inter(
                             fontSize: 14,
-                            color: const Color(0xFF64748B),
+                            color: textMutedColor,
                           ),
                           border: InputBorder.none,
                           isDense: true,
@@ -120,7 +121,7 @@ class _HeaderState extends State<Header> {
                         icon: const Icon(
                           Icons.clear,
                           size: 14,
-                          color: Color(0xFF64748B),
+                          color: textMutedColor,
                         ),
                         padding: EdgeInsets.zero,
                         constraints: const BoxConstraints(),
@@ -147,7 +148,7 @@ class _HeaderState extends State<Header> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: const Color(0xFF2BEECD),
+                        color: primaryTeal,
                         width: 2,
                       ),
                     ),
@@ -158,10 +159,10 @@ class _HeaderState extends State<Header> {
                               fit: BoxFit.cover,
                               errorWidget: (context, url, error) => const Icon(
                                 Icons.person,
-                                color: Color(0xFF475569),
+                                color: textSecondaryColor,
                               ),
                             )
-                          : const Icon(Icons.person, color: Color(0xFF475569)),
+                          : const Icon(Icons.person, color: textSecondaryColor),
                     ),
                   ),
                 ),

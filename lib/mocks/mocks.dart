@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:validacao/data/api_models/story.dart';
+import 'package:validacao/utils/constants.dart';
 
 final List<Story> mockStories = [
   // Featured Card (Urgent)
@@ -8,8 +7,8 @@ final List<Story> mockStories = [
     id: 'featured-1',
     category: 'Food',
     tag: 'URGENT: FOOD & WATER',
-    tagColor: const Color(0xFFDC2626), // Red 600
-    tagBgColor: const Color(0xFFFEE2E2), // Red 100
+    tagColor: tagRedColor,
+    tagBgColor: tagRedBgColor,
     title: 'Support the Al-Saeed Family Relief',
     description:
         'Displaced by recent floods in the coastal region, the family has lost their primary source of clean water. They urgently require food supplies and filtration kits for 5 children.',
@@ -23,8 +22,8 @@ final List<Story> mockStories = [
     id: 'story-1',
     category: 'Medical',
     tag: 'MEDICAL SUPPORT',
-    tagColor: const Color(0xFF3B82F6), // Blue 500
-    tagBgColor: const Color(0xFFEFF6FF), // Blue 500 light
+    tagColor: tagBlueColor,
+    tagBgColor: tagBlueBgColor,
     title: 'Healing Old Elias',
     description:
         'Elias needs continuous medication for his chronic respiratory condition which has worsened this winter.',
@@ -37,8 +36,8 @@ final List<Story> mockStories = [
     id: 'story-2',
     category: 'Education',
     tag: 'EDUCATION',
-    tagColor: const Color(0xFFA855F7), // Purple 500
-    tagBgColor: const Color(0xFFF3E8FF), // Purple 500 light
+    tagColor: tagPurpleColor,
+    tagBgColor: tagPurpleBgColor,
     title: 'Books for Hope Academy',
     description:
         'Help us provide stationery and textbooks for 30 orphaned students starting their spring semester.',
@@ -51,8 +50,8 @@ final List<Story> mockStories = [
     id: 'story-3',
     category: 'Clothes',
     tag: 'WINTER CLOTHES',
-    tagColor: const Color(0xFFEC4899), // Pink 500
-    tagBgColor: const Color(0xFFFCE7F3), // Pink 500 light
+    tagColor: tagPinkColor,
+    tagBgColor: tagPinkBgColor,
     title: 'Warmth for Sara',
     description:
         'Sara\'s family arrived with only summer clothes. They need winter coats and sturdy boots for the coming months.',
@@ -65,8 +64,8 @@ final List<Story> mockStories = [
     id: 'story-4',
     category: 'Shelter',
     tag: 'SHELTER REPAIR',
-    tagColor: const Color(0xFF22C55E), // Green 500
-    tagBgColor: const Color(0xFFDCFCE7), // Green 500 light
+    tagColor: tagGreenColor,
+    tagBgColor: tagGreenBgColor,
     title: 'A Roof Over Their Heads',
     description:
         'The Mamba family\'s roof was damaged in a storm. They need materials to make it leak-proof before rains start.',
