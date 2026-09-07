@@ -9,6 +9,11 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return firebase_ui_auth.SignInScreen(
+      actions: [
+        firebase_ui_auth.AuthStateChangeAction((context, state) {
+          Navigator.of(context).pop();
+        }),
+      ],
       providers: [
         GoogleProvider(clientId: clientId), // Add this line
       ],

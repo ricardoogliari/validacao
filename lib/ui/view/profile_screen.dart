@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
       providers: const [],
       appBar: AppBar(
         title: Text(
-          'User Profile',
+          'Perfil do Usuário',
           style: GoogleFonts.inter(fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.white,
