@@ -15,6 +15,7 @@ final List<Story> mockStories = [
     imageUrl:
         'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
     likesCount: 242,
+    reportsCount: 10,
     isUrgent: true,
   ),
   // Story Card 1
@@ -30,6 +31,7 @@ final List<Story> mockStories = [
     imageUrl:
         'https://images.unsplash.com/photo-1581056771107-24ca5f033842?auto=format&fit=crop&w=500&q=80',
     likesCount: 128,
+    reportsCount: 10,
   ),
   // Story Card 2
   Story(
@@ -44,6 +46,7 @@ final List<Story> mockStories = [
     imageUrl:
         'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=500&q=80',
     likesCount: 95,
+    reportsCount: 10,
   ),
   // Story Card 3
   Story(
@@ -58,6 +61,7 @@ final List<Story> mockStories = [
     imageUrl:
         'https://images.unsplash.com/photo-1513829096999-49786022943b?auto=format&fit=crop&w=500&q=80',
     likesCount: 167,
+    reportsCount: 10,
   ),
   // Story Card 4
   Story(
@@ -72,5 +76,6 @@ final List<Story> mockStories = [
     imageUrl:
         'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=500&q=80',
     likesCount: 84,
+    reportsCount: 10,
   ),
 ];

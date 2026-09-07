@@ -59,7 +59,8 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   }
 
   void _toggleLike(Story story) {
-    setState(() {
+    //TODO
+    /*setState(() {
       if (story.hasLiked) {
         story.hasLiked = false;
         story.likesCount--;
@@ -67,10 +68,12 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
         story.hasLiked = true;
         story.likesCount++;
       }
-    });
+    });*/
   }
 
   void _toggleReport(Story story) {
+    //TODO
+    /*
     setState(() {
       story.isReported = !story.isReported;
     });
@@ -85,6 +88,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
         behavior: SnackBarBehavior.floating,
       ),
     );
+    */
   }
 
   void _showDetailsDialog(Story story) {

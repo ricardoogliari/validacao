@@ -106,10 +106,10 @@ class Detail extends StatelessWidget {
                               //_toggleLike(story);
                             },
                             icon: Icon(
-                              story.hasLiked
+                              story.isLiked
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.hasLiked
+                              color: story.isLiked
                                   ? Colors.red
                                   : textSecondaryColor,
                               size: 18,
@@ -148,7 +148,7 @@ class Detail extends StatelessWidget {
                               size: 18,
                             ),
                             label: Text(
-                              story.isReported ? 'Reported' : 'Report',
+                              '${story.reportsCount}',
                               style: GoogleFonts.inter(
                                 fontWeight: FontWeight.bold,
                                 color: textDarkColor,

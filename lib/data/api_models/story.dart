@@ -10,9 +10,12 @@ class Story {
   final String description;
   final String imageUrl;
   int likesCount;
-  bool hasLiked;
-  bool isReported;
+  int reportsCount;
   final bool isUrgent;
+
+  bool get isLiked => likesCount > 0;
+
+  bool get isReported => reportsCount > 0;
 
   Story({
     required this.id,
@@ -24,8 +27,7 @@ class Story {
     required this.description,
     required this.imageUrl,
     required this.likesCount,
-    this.hasLiked = false,
-    this.isReported = false,
+    required this.reportsCount,
     this.isUrgent = false,
   });
 
@@ -40,8 +42,7 @@ class Story {
       'description': description,
       'imageUrl': imageUrl,
       'likesCount': likesCount,
-      'hasLiked': hasLiked,
-      'isReported': isReported,
+      'reportsCount': reportsCount,
       'isUrgent': isUrgent,
     };
   }
@@ -57,8 +58,7 @@ class Story {
       description: map['description'] as String? ?? '',
       imageUrl: map['imageUrl'] as String? ?? '',
       likesCount: (map['likesCount'] as num?)?.toInt() ?? 0,
-      hasLiked: map['hasLiked'] as bool? ?? false,
-      isReported: map['isReported'] as bool? ?? false,
+      reportsCount: (map['reportsCount'] as num?)?.toInt() ?? 0,
       isUrgent: map['isUrgent'] as bool? ?? false,
     );
   }

@@ -106,10 +106,10 @@ class StoryCard extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: Icon(
-                              story.hasLiked
+                              story.isLiked
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.hasLiked
+                              color: story.isLiked
                                   ? Colors.red
                                   : textMutedColor,
                             ),
