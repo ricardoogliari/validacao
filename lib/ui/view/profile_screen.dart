@@ -1,6 +1,5 @@
 import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebase_ui_auth;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:validacao/utils/constants.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -13,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'Perfil do Usuário',
-          style: GoogleFonts.inter(fontWeight: FontWeight.bold),
+          style: fontProfileAppBarTitle,
         ),
         backgroundColor: Colors.white,
         foregroundColor: textPrimaryColor,
@@ -48,11 +47,7 @@ class ProfileScreen extends StatelessWidget {
                   Text(
                     'Thank you for being part of AidConnect!',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
-                      color: textPrimaryColor,
-                      fontSize: 16,
-                    ),
+                    style: fontProfileBannerTitle,
                   ),
                 ],
               ),

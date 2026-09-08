@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/data/repositories/remote_stories_repository.dart';
 import 'package:validacao/ui/view/profile_screen.dart';
@@ -171,11 +170,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                               ),
                               child: Text(
                                 'Search Results (${filteredStories.length})',
-                                style: GoogleFonts.inter(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
-                                  color: textSecondaryColor,
-                                ),
+                                style: fontSearchResultsHeader,
                               ),
                             ),
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/category_item.dart';
 import 'package:validacao/utils/constants.dart';
 
@@ -32,11 +31,7 @@ class _FilterSectionsState extends State<FilterSections> {
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
             'Como você gostaria de ajudar?',
-            style: GoogleFonts.inter(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: textPrimaryColor,
-            ),
+            style: fontFilterSectionTitle,
           ),
         ),
         const SizedBox(height: 16),
@@ -91,15 +86,9 @@ class _FilterSectionsState extends State<FilterSections> {
                           const SizedBox(width: 8),
                           Text(
                             cat.label,
-                            style: GoogleFonts.inter(
-                              fontSize: 14,
-                              fontWeight: isSelected
-                                  ? FontWeight.bold
-                                  : FontWeight.w500,
-                              color: isSelected
-                                  ? textPrimaryColor
-                                  : textDarkColor,
-                            ),
+                            style: isSelected
+                                ? fontCategorySelected
+                                : fontCategoryUnselected,
                           ),
                         ],
                       ),

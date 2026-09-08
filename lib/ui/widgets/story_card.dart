@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
 
@@ -65,12 +64,7 @@ class StoryCard extends StatelessWidget {
                       // Tag
                       Text(
                         story.tag,
-                        style: GoogleFonts.inter(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          color: story.tagColor,
-                          letterSpacing: 0.3,
-                        ),
+                        style: fontStoryCardTag.copyWith(color: story.tagColor),
                       ),
                       const SizedBox(height: 4),
                       // Title
@@ -78,11 +72,7 @@ class StoryCard extends StatelessWidget {
                         story.title,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: textPrimaryColor,
-                        ),
+                        style: fontStoryCardTitle,
                       ),
                       const SizedBox(height: 6),
                       // Description
@@ -90,11 +80,7 @@ class StoryCard extends StatelessWidget {
                         story.description,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: GoogleFonts.inter(
-                          fontSize: 14,
-                          color: textMutedColor,
-                          height: 1.4,
-                        ),
+                        style: fontStoryCardDescription,
                       ),
                     ],
                   ),
@@ -150,11 +136,7 @@ class StoryCard extends StatelessWidget {
                         ),
                         child: Text(
                           'See Details',
-                          style: GoogleFonts.inter(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                            color: darkTeal,
-                          ),
+                          style: fontStoryCardButton,
                         ),
                       ),
                     ],

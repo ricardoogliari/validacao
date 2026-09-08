@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/utils/constants.dart';
 
 class Header extends StatefulWidget {
@@ -62,12 +61,7 @@ class _HeaderState extends State<Header> {
               // Brand Name
               Text(
                 'ValidAção',
-                style: GoogleFonts.inter(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: textPrimaryColor,
-                  letterSpacing: -0.45,
-                ),
+                style: fontHeaderBrand,
               ),
             ],
           ),
@@ -100,16 +94,10 @@ class _HeaderState extends State<Header> {
                             widget.updateSearchQuery(query: _searchQuery);
                           });
                         },
-                        style: GoogleFonts.inter(
-                          fontSize: 14,
-                          color: textPrimaryColor,
-                        ),
+                        style: fontHeaderSearch,
                         decoration: InputDecoration(
                           hintText: 'Busque histórias...',
-                          hintStyle: GoogleFonts.inter(
-                            fontSize: 14,
-                            color: textMutedColor,
-                          ),
+                          hintStyle: fontHeaderSearchHint,
                           border: InputBorder.none,
                           isDense: true,
                           contentPadding: EdgeInsets.zero,

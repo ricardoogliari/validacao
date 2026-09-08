@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/utils/constants.dart';
 
 class EmptyState extends StatelessWidget {
@@ -21,16 +20,12 @@ class EmptyState extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             'No Stories Found',
-            style: GoogleFonts.inter(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: textPrimaryColor,
-            ),
+            style: fontEmptyStateTitle,
           ),
           const SizedBox(height: 8),
           Text(
             'Try adjusting your search query or selected category.',
-            style: GoogleFonts.inter(fontSize: 14, color: textMutedColor),
+            style: fontEmptyStateSubtitle,
           ),
         ],
       ),

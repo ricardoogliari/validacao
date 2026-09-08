@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
 
@@ -68,31 +67,18 @@ class Detail extends StatelessWidget {
                     ),
                     child: Text(
                       story.tag,
-                      style: GoogleFonts.inter(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: story.tagColor,
-                        letterSpacing: 0.5,
-                      ),
+                      style: fontDetailTag.copyWith(color: story.tagColor),
                     ),
                   ),
                   const SizedBox(height: 12),
                   Text(
                     story.title,
-                    style: GoogleFonts.inter(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                      color: textPrimaryColor,
-                    ),
+                    style: fontDetailTitle,
                   ),
                   const SizedBox(height: 12),
                   Text(
                     story.description,
-                    style: GoogleFonts.inter(
-                      fontSize: 15,
-                      color: textSecondaryColor,
-                      height: 1.6,
-                    ),
+                    style: fontDetailDescription,
                   ),
                   const SizedBox(height: 24),
                   Row(
@@ -116,10 +102,7 @@ class Detail extends StatelessWidget {
                             ),
                             label: Text(
                               '${story.likesCount}',
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.bold,
-                                color: textDarkColor,
-                              ),
+                              style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: borderColor),
@@ -149,10 +132,7 @@ class Detail extends StatelessWidget {
                             ),
                             label: Text(
                               '${story.reportsCount}',
-                              style: GoogleFonts.inter(
-                                fontWeight: FontWeight.bold,
-                                color: textDarkColor,
-                              ),
+                              style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(
                               side: const BorderSide(color: borderColor),

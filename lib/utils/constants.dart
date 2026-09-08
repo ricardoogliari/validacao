@@ -1,4 +1,5 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 // Categories
 const String allNeeds = "Todos";
@@ -43,3 +44,113 @@ const Color tagPinkColor = Color(0xFFEC4899);
 const Color tagPinkBgColor = Color(0xFFFCE7F3);
 const Color tagGreenColor = Color(0xFF22C55E);
 const Color tagGreenBgColor = Color(0xFFDCFCE7);
+
+// Typography / TextStyles
+final TextStyle fontDetailTag = GoogleFonts.inter(
+  fontSize: 10,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 0.5,
+);
+
+final TextStyle fontDetailTitle = GoogleFonts.inter(
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontDetailDescription = GoogleFonts.inter(
+  fontSize: 15,
+  color: textSecondaryColor,
+  height: 1.6,
+);
+
+final TextStyle fontDetailAction = GoogleFonts.inter(
+  fontWeight: FontWeight.bold,
+  color: textDarkColor,
+);
+
+final TextStyle fontStoryCardTag = GoogleFonts.inter(
+  fontSize: 12,
+  fontWeight: FontWeight.bold,
+  letterSpacing: 0.3,
+);
+
+final TextStyle fontStoryCardTitle = GoogleFonts.inter(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontStoryCardDescription = GoogleFonts.inter(
+  fontSize: 14,
+  color: textMutedColor,
+  height: 1.4,
+);
+
+final TextStyle fontStoryCardButton = GoogleFonts.inter(
+  fontSize: 12,
+  fontWeight: FontWeight.bold,
+  color: darkTeal,
+);
+
+final TextStyle fontEmptyStateTitle = GoogleFonts.inter(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontEmptyStateSubtitle = GoogleFonts.inter(
+  fontSize: 14,
+  color: textMutedColor,
+);
+
+final TextStyle fontFilterSectionTitle = GoogleFonts.inter(
+  fontSize: 20,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontCategorySelected = GoogleFonts.inter(
+  fontSize: 14,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontCategoryUnselected = GoogleFonts.inter(
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
+  color: textDarkColor,
+);
+
+final TextStyle fontHeaderBrand = GoogleFonts.inter(
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+  letterSpacing: -0.45,
+);
+
+final TextStyle fontHeaderSearch = GoogleFonts.inter(
+  fontSize: 14,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontHeaderSearchHint = GoogleFonts.inter(
+  fontSize: 14,
+  color: textMutedColor,
+);
+
+final TextStyle fontProfileAppBarTitle = GoogleFonts.inter(
+  fontWeight: FontWeight.bold,
+);
+
+final TextStyle fontProfileBannerTitle = GoogleFonts.inter(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  color: textPrimaryColor,
+);
+
+final TextStyle fontSearchResultsHeader = GoogleFonts.inter(
+  fontSize: 16,
+  fontWeight: FontWeight.bold,
+  color: textSecondaryColor,
+);
