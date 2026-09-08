@@ -101,7 +101,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             borderRadius: BorderRadius.circular(24),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Detail(story: story),
+          child: Detail(story: story, currentUser: _currentUser),
         );
       },
     );
@@ -193,6 +193,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
 
                                 return StoryCard(
                                   story: story,
+                                  currentUser: _currentUser,
                                   onToggleLike: ({required story}) =>
                                       _toggleLike(story),
                                   onToggleReport: ({required story}) =>

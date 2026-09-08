@@ -9,13 +9,13 @@ class Story {
   final String title;
   final String description;
   final String imageUrl;
-  int likesCount;
-  int reportsCount;
   final bool isUrgent;
+  final List<String> likes;
+  final List<String> reports;
 
-  bool get isLiked => likesCount > 0;
+  bool isLiked({required String user}) => likes.contains(user);
 
-  bool get isReported => reportsCount > 0;
+  bool isReported({required String user}) => reports.contains(user);
 
   Story({
     required this.id,
@@ -26,8 +26,8 @@ class Story {
     required this.title,
     required this.description,
     required this.imageUrl,
-    required this.likesCount,
-    required this.reportsCount,
+    required this.likes,
+    required this.reports,
     this.isUrgent = false,
   });
 
@@ -41,8 +41,8 @@ class Story {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      'likesCount': likesCount,
-      'reportsCount': reportsCount,
+      'likesCount': likes,
+      'reportsCount': reports,
       'isUrgent': isUrgent,
     };
   }
@@ -57,8 +57,14 @@ class Story {
       title: map['title'] as String? ?? '',
       description: map['description'] as String? ?? '',
       imageUrl: map['imageUrl'] as String? ?? '',
-      likesCount: (map['likesCount'] as num?)?.toInt() ?? 0,
-      reportsCount: (map['reportsCount'] as num?)?.toInt() ?? 0,
+      likes:
+          (map['likes'] as List<dynamic>?)?.map((e) => e as String).toList() ??
+          [],
+      reports:
+          (map['reports'] as List<dynamic>?)
+              ?.map((e) => e as String)
+              .toList() ??
+          [],
       isUrgent: map['isUrgent'] as bool? ?? false,
     );
   }

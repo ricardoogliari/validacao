@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
 
 class Detail extends StatelessWidget {
-  const Detail({super.key, required this.story});
+  const Detail({super.key, required this.story, required this.currentUser});
 
   final Story story;
+  final User? currentUser;
 
   @override
   Widget build(BuildContext context) {
@@ -71,15 +73,9 @@ class Detail extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
-                    story.title,
-                    style: fontDetailTitle,
-                  ),
+                  Text(story.title, style: fontDetailTitle),
                   const SizedBox(height: 12),
-                  Text(
-                    story.description,
-                    style: fontDetailDescription,
-                  ),
+                  Text(story.description, style: fontDetailDescription),
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,16 +88,16 @@ class Detail extends StatelessWidget {
                               //_toggleLike(story);
                             },
                             icon: Icon(
-                              story.isLiked
+                              story.isLiked(user: currentUser?.uid ?? "")
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.isLiked
+                              color: story.isLiked(user: currentUser?.uid ?? "")
                                   ? Colors.red
                                   : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
-                              '${story.likesCount}',
+                              '${story.likes.length}',
                               style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(
@@ -122,16 +118,17 @@ class Detail extends StatelessWidget {
                               //_toggleReport(story);
                             },
                             icon: Icon(
-                              story.isReported
+                              story.isReported(user: currentUser?.uid ?? "")
                                   ? Icons.report_rounded
                                   : Icons.report_gmailerrorred_rounded,
-                              color: story.isReported
+                              color:
+                                  story.isReported(user: currentUser?.uid ?? "")
                                   ? Colors.orange
                                   : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
-                              '${story.reportsCount}',
+                              '${story.reports.length}',
                               style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
@@ -7,12 +8,14 @@ class StoryCard extends StatelessWidget {
   const StoryCard({
     super.key,
     required this.story,
+    required this.currentUser,
     required this.onToggleLike,
     required this.onToggleReport,
     required this.onShowDetails,
   });
 
   final Story story;
+  final User? currentUser;
   final Function({required Story story}) onToggleLike;
   final Function({required Story story}) onToggleReport;
   final Function({required Story story}) onShowDetails;
@@ -92,10 +95,10 @@ class StoryCard extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: Icon(
-                              story.isLiked
+                              story.isLiked(user: currentUser?.uid ?? "")
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.isLiked
+                              color: story.isLiked(user: currentUser?.uid ?? "")
                                   ? Colors.red
                                   : textMutedColor,
                             ),
@@ -107,10 +110,11 @@ class StoryCard extends StatelessWidget {
                           const SizedBox(width: 12),
                           IconButton(
                             icon: Icon(
-                              story.isReported
+                              story.isReported(user: currentUser?.uid ?? "")
                                   ? Icons.report_rounded
                                   : Icons.report_gmailerrorred_rounded,
-                              color: story.isReported
+                              color:
+                                  story.isReported(user: currentUser?.uid ?? "")
                                   ? Colors.orange
                                   : textMutedColor,
                             ),
@@ -134,10 +138,7 @@ class StoryCard extends StatelessWidget {
                             vertical: 10,
                           ),
                         ),
-                        child: Text(
-                          'See Details',
-                          style: fontStoryCardButton,
-                        ),
+                        child: Text('See Details', style: fontStoryCardButton),
                       ),
                     ],
                   ),
