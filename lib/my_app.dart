@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:validacao/ui/view/aid_connect_screen.dart';
-
-import 'auth_gate.dart';
+import 'package:validacao/ui/view/home_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key, required this.clientId});
@@ -15,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: AidConnectScreen(), //AuthGate(clientId: clientId),
+      home: const HomeScreen(),
     );
   }
 }

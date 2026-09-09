@@ -13,15 +13,15 @@ import 'package:validacao/ui/widgets/story_card.dart';
 import 'package:validacao/utils/constants.dart';
 
 class AidConnectScreen extends StatefulWidget {
-  const AidConnectScreen({super.key});
+  const AidConnectScreen({super.key, required this.user});
+
+  final User? user;
 
   @override
   State<AidConnectScreen> createState() => _AidConnectScreenState();
 }
 
 class _AidConnectScreenState extends State<AidConnectScreen> {
-  User? _currentUser;
-
   String _selectedCategory = allNeeds;
   String _searchQuery = "";
 
@@ -32,14 +32,6 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   @override
   void initState() {
     super.initState();
-    _currentUser = FirebaseAuth.instance.currentUser;
-    FirebaseAuth.instance.authStateChanges().listen((user) {
-      if (mounted) {
-        setState(() {
-          _currentUser = user;
-        });
-      }
-    });
 
     _readStories();
   }
@@ -59,6 +51,9 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   }
 
   void _toggleLike(Story story) {
+    if (widget.user == null) {
+      _navigateToProfile();
+    }
     //TODO
     /*setState(() {
       if (story.hasLiked) {
@@ -72,6 +67,9 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   }
 
   void _toggleReport(Story story) {
+    if (widget.user == null) {
+      _navigateToProfile();
+    }
     //TODO
     /*
     setState(() {
@@ -101,14 +99,14 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             borderRadius: BorderRadius.circular(24),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Detail(story: story, currentUser: _currentUser),
+          child: Detail(story: story, currentUser: widget.user),
         );
       },
     );
   }
 
   void _navigateToProfile() {
-    if (_currentUser == null) {
+    if (widget.user == null) {
       Navigator.push(
         context,
         MaterialPageRoute<SignInScreen>(builder: (context) => SignInScreen()),
@@ -142,7 +140,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             children: [
               Header(
                 navigationToProfile: _navigateToProfile,
-                currentUser: _currentUser,
+                currentUser: widget.user,
                 updateSearchQuery: ({required query}) => setState(() {
                   _searchQuery = query;
                 }),
@@ -193,7 +191,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
 
                                 return StoryCard(
                                   story: story,
-                                  currentUser: _currentUser,
+                                  currentUser: widget.user,
                                   onToggleLike: ({required story}) =>
                                       _toggleLike(story),
                                   onToggleReport: ({required story}) =>
