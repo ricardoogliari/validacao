@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
+import 'package:validacao/utils/user_extension.dart';
 
 class StoryCard extends StatelessWidget {
   const StoryCard({
@@ -95,10 +96,10 @@ class StoryCard extends StatelessWidget {
                         children: [
                           IconButton(
                             icon: Icon(
-                              story.isLiked(user: currentUser?.uid ?? "")
+                              story.likes.contains(currentUser?.customId)
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.isLiked(user: currentUser?.uid ?? "")
+                              color: story.likes.contains(currentUser?.customId)
                                   ? Colors.red
                                   : textMutedColor,
                             ),
@@ -110,11 +111,15 @@ class StoryCard extends StatelessWidget {
                           const SizedBox(width: 12),
                           IconButton(
                             icon: Icon(
-                              story.isReported(user: currentUser?.uid ?? "")
+                              story.isReported(
+                                    user: currentUser?.customId ?? "",
+                                  )
                                   ? Icons.report_rounded
                                   : Icons.report_gmailerrorred_rounded,
                               color:
-                                  story.isReported(user: currentUser?.uid ?? "")
+                                  story.isReported(
+                                    user: currentUser?.customId ?? "",
+                                  )
                                   ? Colors.orange
                                   : textMutedColor,
                             ),

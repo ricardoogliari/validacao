@@ -11,6 +11,7 @@ import 'package:validacao/ui/widgets/filter_sections.dart';
 import 'package:validacao/ui/widgets/header.dart';
 import 'package:validacao/ui/widgets/story_card.dart';
 import 'package:validacao/utils/constants.dart';
+import 'package:validacao/utils/user_extension.dart';
 
 class AidConnectScreen extends StatefulWidget {
   const AidConnectScreen({super.key, required this.user});
@@ -38,55 +39,62 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
 
   void _readStories() {
     _viewModel.getStories();
-    /*
-    db
-      .collection("stories")
-      .add(story.toMap())
-      .then(
-        (DocumentReference doc) => print(
-          'DocumentSnapshot added with ID: ${doc.id}',
+  }
+
+  Story _toggleLike(Story story) {
+    if (widget.user == null) {
+      _navigateToProfile();
+    } else {
+      if (story.likes.contains(widget.user?.customId)) {
+        story.likes.remove(widget.user?.customId);
+        _viewModel.updateStory(story: story);
+      } else {
+        story.likes.add(widget.user?.customId ?? '');
+        _viewModel.updateStory(story: story);
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            story.likes.contains(widget.user?.customId)
+                ? 'Like registrado.'
+                : 'Like cancelado.',
+          ),
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
         ),
       );
-    */
+    }
+
+    return story;
   }
 
-  void _toggleLike(Story story) {
+  Story _toggleReport(Story story) {
     if (widget.user == null) {
       _navigateToProfile();
-    }
-    //TODO
-    /*setState(() {
-      if (story.hasLiked) {
-        story.hasLiked = false;
-        story.likesCount--;
+    } else {
+      if (story.reports.contains(widget.user?.customId)) {
+        story.reports.remove(widget.user?.customId);
+        _viewModel.updateStory(story: story);
       } else {
-        story.hasLiked = true;
-        story.likesCount++;
+        story.reports.add(widget.user?.customId ?? '');
+        _viewModel.updateStory(story: story);
       }
-    });*/
-  }
 
-  void _toggleReport(Story story) {
-    if (widget.user == null) {
-      _navigateToProfile();
-    }
-    //TODO
-    /*
-    setState(() {
-      story.isReported = !story.isReported;
-    });
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          story.isReported
-              ? 'Thank you for reporting. We will review this story.'
-              : 'Report cancelled.',
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            story.reports.contains(widget.user?.customId)
+                ? 'Aviso registrado.'
+                : 'Aviso cancelado.',
+          ),
+          duration: const Duration(seconds: 2),
+          behavior: SnackBarBehavior.floating,
         ),
-        duration: const Duration(seconds: 2),
-        behavior: SnackBarBehavior.floating,
-      ),
-    );
-    */
+      );
+    }
+
+    return story;
   }
 
   void _showDetailsDialog(Story story) {
@@ -99,7 +107,12 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             borderRadius: BorderRadius.circular(24),
           ),
           clipBehavior: Clip.antiAlias,
-          child: Detail(story: story, currentUser: widget.user),
+          child: Detail(
+            story: story,
+            currentUser: widget.user,
+            onToggleLike: ({required story}) => _toggleLike(story),
+            onToggleReport: ({required story}) => _toggleReport(story),
+          ),
         );
       },
     );

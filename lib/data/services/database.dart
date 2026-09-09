@@ -12,3 +12,12 @@ Future<List<Story>> listStories() async {
   });
   return stories;
 }
+
+Future<bool> updateStoryDB({required Story story}) async {
+  return FirebaseFirestore.instance
+      .collection("stories")
+      .doc(story.id)
+      .update(story.toMap())
+      .then((_) => true)
+      .onError((_, _) => false);
+}

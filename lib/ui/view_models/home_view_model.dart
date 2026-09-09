@@ -13,6 +13,17 @@ class HomeViewModel extends ChangeNotifier {
   final List<Story> _stories = [];
   List<Story> get stories => _stories;
 
+  Future<Result<bool>> updateStory({required Story story}) async {
+    try {
+      //_stories.remove(story);
+      final result = await _repository.updateStory(story: story);
+      //_stories.add(story);
+      return result;
+    } finally {
+      notifyListeners();
+    }
+  }
+
   Future<Result<List<Story>>> getStories() async {
     try {
       final stories = await _repository.getStories();

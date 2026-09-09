@@ -41,8 +41,8 @@ class Story {
       'title': title,
       'description': description,
       'imageUrl': imageUrl,
-      'likesCount': likes,
-      'reportsCount': reports,
+      'likes': likes,
+      'reports': reports,
       'isUrgent': isUrgent,
     };
   }

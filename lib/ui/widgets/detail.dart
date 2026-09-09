@@ -3,13 +3,28 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
+import 'package:validacao/utils/user_extension.dart';
 
-class Detail extends StatelessWidget {
-  const Detail({super.key, required this.story, required this.currentUser});
+class Detail extends StatefulWidget {
+  Detail({
+    super.key,
+    required this.story,
+    required this.currentUser,
+    required this.onToggleLike,
+    required this.onToggleReport,
+  });
 
-  final Story story;
+  Story story;
   final User? currentUser;
 
+  final Function({required Story story}) onToggleLike;
+  final Function({required Story story}) onToggleReport;
+
+  @override
+  State<Detail> createState() => _DetailState();
+}
+
+class _DetailState extends State<Detail> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -21,7 +36,7 @@ class Detail extends StatelessWidget {
             Stack(
               children: [
                 CachedNetworkImage(
-                  imageUrl: story.imageUrl,
+                  imageUrl: widget.story.imageUrl,
                   height: 250,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -64,18 +79,20 @@ class Detail extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: story.tagBgColor,
+                      color: widget.story.tagBgColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text(
-                      story.tag,
-                      style: fontDetailTag.copyWith(color: story.tagColor),
+                      widget.story.tag,
+                      style: fontDetailTag.copyWith(
+                        color: widget.story.tagColor,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(story.title, style: fontDetailTitle),
+                  Text(widget.story.title, style: fontDetailTitle),
                   const SizedBox(height: 12),
-                  Text(story.description, style: fontDetailDescription),
+                  Text(widget.story.description, style: fontDetailDescription),
                   const SizedBox(height: 24),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -84,20 +101,28 @@ class Detail extends StatelessWidget {
                         children: [
                           OutlinedButton.icon(
                             onPressed: () {
-                              Navigator.pop(context);
-                              //_toggleLike(story);
+                              setState(() {
+                                widget.story = widget.onToggleLike(
+                                  story: widget.story,
+                                );
+                              });
                             },
                             icon: Icon(
-                              story.isLiked(user: currentUser?.uid ?? "")
+                              widget.story.likes.contains(
+                                    widget.currentUser?.customId,
+                                  )
                                   ? Icons.favorite_rounded
                                   : Icons.favorite_border_rounded,
-                              color: story.isLiked(user: currentUser?.uid ?? "")
+                              color:
+                                  widget.story.likes.contains(
+                                    widget.currentUser?.customId,
+                                  )
                                   ? Colors.red
                                   : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
-                              '${story.likes.length}',
+                              '${widget.story.likes.length}',
                               style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(
@@ -114,21 +139,28 @@ class Detail extends StatelessWidget {
                           const SizedBox(width: 8),
                           OutlinedButton.icon(
                             onPressed: () {
-                              Navigator.pop(context);
-                              //_toggleReport(story);
+                              setState(() {
+                                widget.story = widget.onToggleReport(
+                                  story: widget.story,
+                                );
+                              });
                             },
                             icon: Icon(
-                              story.isReported(user: currentUser?.uid ?? "")
+                              widget.story.reports.contains(
+                                    widget.currentUser?.customId,
+                                  )
                                   ? Icons.report_rounded
                                   : Icons.report_gmailerrorred_rounded,
                               color:
-                                  story.isReported(user: currentUser?.uid ?? "")
+                                  widget.story.reports.contains(
+                                    widget.currentUser?.customId,
+                                  )
                                   ? Colors.orange
                                   : textSecondaryColor,
                               size: 18,
                             ),
                             label: Text(
-                              '${story.reports.length}',
+                              '${widget.story.reports.length}',
                               style: fontDetailAction,
                             ),
                             style: OutlinedButton.styleFrom(
