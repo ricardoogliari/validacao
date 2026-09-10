@@ -96,57 +96,64 @@ class _DetailState extends State<Detail> {
                   Text(widget.story.description, style: fontDetailDescription),
                   const SizedBox(height: 24),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                widget.story = widget.onToggleLike(
-                                  story: widget.story,
-                                );
-                              });
-                            },
-                            icon: Icon(
-                              widget.story.likes.contains(
-                                    widget.currentUser?.customId,
-                                  )
-                                  ? Icons.favorite_rounded
-                                  : Icons.favorite_border_rounded,
-                              color:
-                                  widget.story.likes.contains(
-                                    widget.currentUser?.customId,
-                                  )
-                                  ? Colors.red
-                                  : textSecondaryColor,
-                              size: 18,
-                            ),
-                            label: Text(
-                              '${widget.story.likes.length}',
-                              style: fontDetailAction,
-                            ),
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: borderColor),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 12,
-                              ),
-                            ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          decoration: BoxDecoration(
+                            border: Border.all(color: borderColor),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          const SizedBox(width: 8),
-                          OutlinedButton.icon(
-                            onPressed: () {
-                              setState(() {
-                                widget.story = widget.onToggleReport(
-                                  story: widget.story,
-                                );
-                              });
-                            },
-                            icon: Icon(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    widget.story.likes.contains(
+                                          widget.currentUser?.customId,
+                                        )
+                                        ? Icons.favorite_rounded
+                                        : Icons.favorite_border_rounded,
+                                    color:
+                                        widget.story.likes.contains(
+                                          widget.currentUser?.customId,
+                                        )
+                                        ? Colors.red
+                                        : textSecondaryColor,
+                                    size: 18,
+                                  ),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    '${widget.story.likes.length}',
+                                    style: fontDetailAction,
+                                  ),
+                                ],
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.symmetric(vertical: 8.0),
+                                child: Divider(height: 1),
+                              ),
+                              if (widget.story.likes.isNotEmpty)
+                                ...widget.story.likes.map(
+                                  (e) => Text(e.split('***')[1]),
+                                ),
+                              if (widget.story.likes.isEmpty)
+                                const Text('Nenhum like efetuado.'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      /*Container(
+                        padding: const EdgeInsets.all(8.0),
+                        decoration: BoxDecoration(
+                          border: Border.all(color: borderColor),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
                               widget.story.reports.contains(
                                     widget.currentUser?.customId,
                                   )
@@ -160,23 +167,14 @@ class _DetailState extends State<Detail> {
                                   : textSecondaryColor,
                               size: 18,
                             ),
-                            label: Text(
+                            const SizedBox(width: 8),
+                            Text(
                               '${widget.story.reports.length}',
                               style: fontDetailAction,
                             ),
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: borderColor),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                                vertical: 12,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      ),*/
                     ],
                   ),
                 ],

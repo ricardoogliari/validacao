@@ -95,7 +95,10 @@ class StoryCard extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          IconButton(
+                          OutlinedButton.icon(
+                            onPressed: () {
+                              onToggleLike(story: story);
+                            },
                             icon: Icon(
                               story.likes.contains(currentUser?.customId)
                                   ? Icons.favorite_rounded
@@ -104,13 +107,26 @@ class StoryCard extends StatelessWidget {
                                   ? Colors.red
                                   : textMutedColor,
                             ),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            iconSize: 20,
-                            onPressed: () => onToggleLike(story: story),
+                            label: Text(
+                              '${story.likes.length}',
+                              style: fontDetailAction,
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(color: borderColor),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                            ),
                           ),
                           const SizedBox(width: 12),
-                          IconButton(
+                          OutlinedButton.icon(
+                            onPressed: () {
+                              onToggleReport(story: story);
+                            },
                             icon: Icon(
                               story.isReported(
                                     user: currentUser?.customId ?? '',
@@ -124,10 +140,20 @@ class StoryCard extends StatelessWidget {
                                   ? Colors.orange
                                   : textMutedColor,
                             ),
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            iconSize: 20,
-                            onPressed: () => onToggleReport(story: story),
+                            label: Text(
+                              '${story.reports.length}',
+                              style: fontDetailAction,
+                            ),
+                            style: OutlinedButton.styleFrom(
+                              side: const BorderSide(color: borderColor),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                                vertical: 12,
+                              ),
+                            ),
                           ),
                         ],
                       ),
