@@ -143,7 +143,7 @@ class StoryCard extends StatelessWidget {
                             vertical: 10,
                           ),
                         ),
-                        child: Text('See Details', style: fontStoryCardButton),
+                        child: Text('Detalhes', style: fontStoryCardButton),
                       ),
                     ],
                   ),
