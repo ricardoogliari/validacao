@@ -24,7 +24,7 @@ class AidConnectScreen extends StatefulWidget {
 
 class _AidConnectScreenState extends State<AidConnectScreen> {
   String _selectedCategory = allNeeds;
-  String _searchQuery = "";
+  String _searchQuery = '';
 
   final HomeViewModel _viewModel = HomeViewModel(
     repository: RemoteStoriesRepository(),
@@ -98,7 +98,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
   }
 
   void _showDetailsDialog(Story story) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) {
         return Dialog(
@@ -122,12 +122,16 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
     if (widget.user == null) {
       Navigator.push(
         context,
-        MaterialPageRoute<SignInScreen>(builder: (context) => SignInScreen()),
+        MaterialPageRoute<SignInScreen>(
+          builder: (context) => const SignInScreen(),
+        ),
       );
     } else {
       Navigator.push(
         context,
-        MaterialPageRoute<ProfileScreen>(builder: (context) => ProfileScreen()),
+        MaterialPageRoute<ProfileScreen>(
+          builder: (context) => const ProfileScreen(),
+        ),
       );
     }
   }
@@ -215,7 +219,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                               },
                             )
                           else
-                            EmptyState(),
+                            const EmptyState(),
                         ],
                       ),
                     ),

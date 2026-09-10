@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 // Categories
-const String allNeeds = "Todos";
-const String food = "Alimento";
-const String medical = "Médico";
-const String shelter = "Abrigo";
-const String education = "Educação";
-const String clothes = "Roupas";
+const String allNeeds = 'Todos';
+const String food = 'Alimento';
+const String medical = 'Médico';
+const String shelter = 'Abrigo';
+const String education = 'Educação';
+const String clothes = 'Roupas';
 
 // Firebase environment config
 const apiKey = String.fromEnvironment('apiKey');

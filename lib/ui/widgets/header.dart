@@ -11,8 +11,8 @@ class Header extends StatefulWidget {
     required this.updateSearchQuery,
   });
 
-  final Function() navigationToProfile;
-  final Function({required String query}) updateSearchQuery;
+  final void Function() navigationToProfile;
+  final void Function({required String query}) updateSearchQuery;
   final User? currentUser;
 
   @override
@@ -59,10 +59,7 @@ class _HeaderState extends State<Header> {
               ),
               const SizedBox(width: 12),
               // Brand Name
-              Text(
-                'ValidAção',
-                style: fontHeaderBrand,
-              ),
+              Text('ValidAção', style: fontHeaderBrand),
             ],
           ),
           // Right: Search & Profile Avatar
@@ -79,11 +76,7 @@ class _HeaderState extends State<Header> {
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.search,
-                      size: 16,
-                      color: textMutedColor,
-                    ),
+                    const Icon(Icons.search, size: 16, color: textMutedColor),
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextField(
@@ -135,10 +128,7 @@ class _HeaderState extends State<Header> {
                     height: 40,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      border: Border.all(
-                        color: primaryTeal,
-                        width: 2,
-                      ),
+                      border: Border.all(color: primaryTeal, width: 2),
                     ),
                     child: ClipOval(
                       child: widget.currentUser?.photoURL != null

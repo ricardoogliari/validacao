@@ -17,9 +17,9 @@ class StoryCard extends StatelessWidget {
 
   final Story story;
   final User? currentUser;
-  final Function({required Story story}) onToggleLike;
-  final Function({required Story story}) onToggleReport;
-  final Function({required Story story}) onShowDetails;
+  final void Function({required Story story}) onToggleLike;
+  final void Function({required Story story}) onToggleReport;
+  final void Function({required Story story}) onShowDetails;
 
   @override
   Widget build(BuildContext context) {
@@ -112,13 +112,13 @@ class StoryCard extends StatelessWidget {
                           IconButton(
                             icon: Icon(
                               story.isReported(
-                                    user: currentUser?.customId ?? "",
+                                    user: currentUser?.customId ?? '',
                                   )
                                   ? Icons.report_rounded
                                   : Icons.report_gmailerrorred_rounded,
                               color:
                                   story.isReported(
-                                    user: currentUser?.customId ?? "",
+                                    user: currentUser?.customId ?? '',
                                   )
                                   ? Colors.orange
                                   : textMutedColor,

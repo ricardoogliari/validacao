@@ -51,10 +51,13 @@ class HomeScreen extends StatelessWidget {
             Text(user?.email ?? 'User'),
             if (user?.photoURL != null) ...[
               () {
-                final originalUrl = user!.photoURL!.replaceAll(RegExp(r'=s\d+-c$'), '');
+                final originalUrl = user!.photoURL!.replaceAll(
+                  RegExp(r'=s\d+-c$'),
+                  '',
+                );
                 // Using images.weserv.nl as a proxy to bypass 429 rate limiting from Google CDN
-                final photoUrl = 'https://images.weserv.nl/?url=${Uri.encodeComponent(originalUrl)}';
-                print('Requesting Image URL (via proxy): $photoUrl');
+                final photoUrl =
+                    'https://images.weserv.nl/?url=${Uri.encodeComponent(originalUrl)}';
                 return Image.network(
                   photoUrl,
                   loadingBuilder: (context, child, loadingProgress) {
@@ -62,7 +65,6 @@ class HomeScreen extends StatelessWidget {
                     return const CircularProgressIndicator();
                   },
                   errorBuilder: (context, error, stackTrace) {
-                    print('Error loading image: $error');
                     return const Icon(Icons.person, size: 100);
                   },
                   width: 100,
@@ -70,11 +72,10 @@ class HomeScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 );
               }(),
-            ]
-            else
+            ] else
               const Icon(Icons.person, size: 100),
             const SizedBox(height: 16),
-            SignOutButton(),
+            const SignOutButton(),
           ],
         ),
       ),

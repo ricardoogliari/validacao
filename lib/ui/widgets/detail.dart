@@ -5,6 +5,7 @@ import 'package:validacao/data/api_models/story.dart';
 import 'package:validacao/utils/constants.dart';
 import 'package:validacao/utils/user_extension.dart';
 
+// ignore: must_be_immutable
 class Detail extends StatefulWidget {
   Detail({
     super.key,
@@ -17,8 +18,8 @@ class Detail extends StatefulWidget {
   Story story;
   final User? currentUser;
 
-  final Function({required Story story}) onToggleLike;
-  final Function({required Story story}) onToggleReport;
+  final Story Function({required Story story}) onToggleLike;
+  final Story Function({required Story story}) onToggleReport;
 
   @override
   State<Detail> createState() => _DetailState();
