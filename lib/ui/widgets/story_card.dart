@@ -17,6 +17,7 @@ class StoryCard extends StatelessWidget {
 
   final Story story;
   final User? currentUser;
+
   final void Function({required Story story}) onToggleLike;
   final void Function({required Story story}) onToggleReport;
   final void Function({required Story story}) onShowDetails;
