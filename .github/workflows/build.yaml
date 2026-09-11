@@ -30,7 +30,7 @@ jobs:
       run: flutter analyze
 
     - name: Flutter Format Check
-      run: flutter format --set-dry-run .
+      run: dart format --output=none --set-exit-if-changed .
 
     - name: Flutter Tests
       run: flutter test
