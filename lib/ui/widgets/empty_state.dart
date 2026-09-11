@@ -18,10 +18,7 @@ class EmptyState extends StatelessWidget {
         children: [
           const Icon(Icons.search_off_rounded, size: 64, color: iconMutedColor),
           const SizedBox(height: 16),
-          Text(
-            'No Stories Found',
-            style: fontEmptyStateTitle,
-          ),
+          Text('No Stories Found', style: fontEmptyStateTitle),
           const SizedBox(height: 8),
           Text(
             'Try adjusting your search query or selected category.',

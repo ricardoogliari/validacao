@@ -10,10 +10,7 @@ class ProfileScreen extends StatelessWidget {
     return firebase_ui_auth.ProfileScreen(
       providers: const [],
       appBar: AppBar(
-        title: Text(
-          'Perfil do Usuário',
-          style: fontProfileAppBarTitle,
-        ),
+        title: Text('Perfil do Usuário', style: fontProfileAppBarTitle),
         backgroundColor: Colors.white,
         foregroundColor: textPrimaryColor,
         elevation: 0,
