@@ -1,0 +1,36 @@
+# Note: In a yml each level is padded by 2 spaces
+name: Flutter
+
+on:
+ # Runs this action when you push on master
+ push:
+   branches: [ "master" ]
+ # Runs this when a PR against master is created
+ pull_request:
+   branches: [ "master" ]
+
+jobs:
+  flutter_test:
+    runs-on: ubuntu-latest
+    # timeout-minutes: 10
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: '3.38.3'
+
+    - name: Flutter Doctor
+      run: flutter doctor -v
+
+    - name: Flutter Analyze
+      run: flutter analyze
+
+    - name: Flutter Format Check
+      run: flutter format --set-dry-run .
+
+    - name: Flutter Tests
+      run: flutter test
