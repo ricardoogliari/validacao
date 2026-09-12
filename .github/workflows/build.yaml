@@ -10,7 +10,7 @@ on:
    branches: [ "master" ]
 
 jobs:
-  flutter_test:
+  validacao_pipeline:
     runs-on: ubuntu-latest
     # timeout-minutes: 10
 
