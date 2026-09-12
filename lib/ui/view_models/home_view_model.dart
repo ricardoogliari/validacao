@@ -24,6 +24,23 @@ class HomeViewModel extends ChangeNotifier {
     }
   }
 
+  Future<Result<bool>> addStory({required Story story}) async {
+    try {
+      final result = await _repository.addStory(story: story);
+      switch (result) {
+        case Ok<bool>():
+          if (result.value) {
+            await getStories();
+          }
+        case Error<bool>():
+          debugPrint('Failed to add story');
+      }
+      return result;
+    } finally {
+      notifyListeners();
+    }
+  }
+
   Future<Result<List<Story>>> getStories() async {
     try {
       final stories = await _repository.getStories();

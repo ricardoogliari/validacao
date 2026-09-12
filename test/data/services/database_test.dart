@@ -154,5 +154,68 @@ void main() {
         expect(result, isFalse);
       });
     });
+
+    group('addStoryDB', () {
+      test('adds story with auto-generated id when id is empty', () async {
+        final newStory = Story(
+          id: '',
+          category: 'Food',
+          tag: 'FOOD DRIVE',
+          tagColor: const Color(0xFF112233),
+          tagBgColor: const Color(0xFF445566),
+          title: 'Food Donation Drive',
+          description: 'Collecting cans of food',
+          imageUrl: 'https://example.com/canned.jpg',
+          likes: [],
+          reports: [],
+          isUrgent: true,
+        );
+
+        final result = await addStoryDB(
+          story: newStory,
+          firestore: fakeFirestore,
+        );
+
+        expect(result, isTrue);
+
+        final snapshot = await fakeFirestore.collection('stories').get();
+        expect(snapshot.docs.length, 1);
+        final doc = snapshot.docs.first;
+        expect(doc.data()['title'], 'Food Donation Drive');
+        expect(doc.data()['category'], 'Food');
+        expect(doc.data()['id'], doc.id);
+        expect(doc.data()['isUrgent'], isTrue);
+      });
+
+      test('adds story with provided id when id is specified', () async {
+        final newStory = Story(
+          id: 'custom-story-99',
+          category: 'Education',
+          tag: 'BOOKS',
+          tagColor: const Color(0xFF112233),
+          tagBgColor: const Color(0xFF445566),
+          title: 'School Supplies',
+          description: 'Notebooks and pencils',
+          imageUrl: 'https://example.com/books.jpg',
+          likes: [],
+          reports: [],
+        );
+
+        final result = await addStoryDB(
+          story: newStory,
+          firestore: fakeFirestore,
+        );
+
+        expect(result, isTrue);
+
+        final doc = await fakeFirestore
+            .collection('stories')
+            .doc('custom-story-99')
+            .get();
+        expect(doc.exists, isTrue);
+        expect(doc.data()?['title'], 'School Supplies');
+        expect(doc.data()?['id'], 'custom-story-99');
+      });
+    });
   });
 }

@@ -132,5 +132,31 @@ void main() {
         expect((result as Ok<bool>).value, isFalse);
       });
     });
+
+    group('addStory', () {
+      test('returns Result.ok(true) when story addition succeeds', () async {
+        final newStory = Story(
+          id: '',
+          category: 'Medical',
+          tag: 'HEALTH',
+          tagColor: const Color(0xFF112233),
+          tagBgColor: const Color(0xFF445566),
+          title: 'Doctor Needed',
+          description: 'Medical supplies required',
+          imageUrl: 'https://example.com/doctor.jpg',
+          likes: [],
+          reports: [],
+        );
+
+        final result = await repository.addStory(story: newStory);
+
+        expect(result, isA<Ok<bool>>());
+        expect((result as Ok<bool>).value, isTrue);
+
+        final snapshot = await fakeFirestore.collection('stories').get();
+        expect(snapshot.docs.length, 1);
+        expect(snapshot.docs.first.data()['title'], 'Doctor Needed');
+      });
+    });
   });
 }

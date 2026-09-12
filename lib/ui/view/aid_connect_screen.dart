@@ -5,12 +5,14 @@ import 'package:validacao/data/repositories/remote_stories_repository.dart';
 import 'package:validacao/ui/view/profile_screen.dart';
 import 'package:validacao/ui/view/sign_in_screen.dart';
 import 'package:validacao/ui/view_models/home_view_model.dart';
+import 'package:validacao/ui/widgets/create_story_dialog.dart';
 import 'package:validacao/ui/widgets/detail.dart';
 import 'package:validacao/ui/widgets/empty_state.dart';
 import 'package:validacao/ui/widgets/filter_sections.dart';
 import 'package:validacao/ui/widgets/header.dart';
 import 'package:validacao/ui/widgets/story_card.dart';
 import 'package:validacao/utils/constants.dart';
+import 'package:validacao/utils/result.dart';
 import 'package:validacao/utils/user_extension.dart';
 
 class AidConnectScreen extends StatefulWidget {
@@ -112,6 +114,46 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             currentUser: widget.user,
             onToggleLike: ({required story}) => _toggleLike(story),
             onToggleReport: ({required story}) => _toggleReport(story),
+          ),
+        );
+      },
+    );
+  }
+
+  void _showCreateStoryDialog() {
+    if (widget.user == null) {
+      _navigateToProfile();
+      return;
+    }
+
+    final messenger = ScaffoldMessenger.of(context);
+
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return Dialog(
+          backgroundColor: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: CreateStoryDialog(
+            onSubmit: (newStory) async {
+              final result = await _viewModel.addStory(story: newStory);
+              final isSuccess = result is Ok<bool> && result.value;
+              messenger.showSnackBar(
+                SnackBar(
+                  content: Text(
+                    isSuccess
+                        ? 'História adicionada com sucesso!'
+                        : 'Erro ao adicionar a história.',
+                  ),
+                  duration: const Duration(seconds: 3),
+                  behavior: SnackBarBehavior.floating,
+                ),
+              );
+              return isSuccess;
+            },
           ),
         );
       },
@@ -229,6 +271,16 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
             ],
           );
         },
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: _showCreateStoryDialog,
+        backgroundColor: primaryTeal,
+        foregroundColor: textPrimaryColor,
+        icon: const Icon(Icons.add_rounded),
+        label: const Text(
+          'Nova História',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }

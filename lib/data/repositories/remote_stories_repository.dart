@@ -21,4 +21,10 @@ class RemoteStoriesRepository implements StoriesRepository {
     final result = await updateStoryDB(story: story, firestore: _firestore);
     return Result.ok(result);
   }
+
+  @override
+  Future<Result<bool>> addStory({required Story story}) async {
+    final result = await addStoryDB(story: story, firestore: _firestore);
+    return Result.ok(result);
+  }
 }

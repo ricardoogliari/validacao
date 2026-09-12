@@ -25,3 +25,21 @@ Future<bool> updateStoryDB({
       .then((_) => true)
       .onError((_, _) => false);
 }
+
+Future<bool> addStoryDB({
+  required Story story,
+  FirebaseFirestore? firestore,
+}) async {
+  final FirebaseFirestore db = firestore ?? FirebaseFirestore.instance;
+  try {
+    final docRef = story.id.isNotEmpty
+        ? db.collection('stories').doc(story.id)
+        : db.collection('stories').doc();
+    final storyData = story.toMap();
+    storyData['id'] = docRef.id;
+    await docRef.set(storyData);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}

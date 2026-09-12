@@ -5,4 +5,6 @@ abstract class StoriesRepository {
   Future<Result<List<Story>>> getStories();
 
   Future<Result<bool>> updateStory({required Story story});
+
+  Future<Result<bool>> addStory({required Story story});
 }
