@@ -17,6 +17,9 @@ const projectId = String.fromEnvironment('projectId');
 const authDomain = String.fromEnvironment('authDomain');
 const storageBucket = String.fromEnvironment('storageBucket');
 
+//Sentry
+const dsn = String.fromEnvironment('dsn');
+
 // App & UI Colors
 const Color appBackgroundColor = Color(0xFFF6F8F8);
 const Color surfaceColor = Color(0xFFF1F5F9);
