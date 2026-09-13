@@ -226,7 +226,7 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
                                 left: 8,
                               ),
                               child: Text(
-                                'Search Results for Jana (${filteredStories.length})',
+                                'Search Results (${filteredStories.length})',
                                 style: fontSearchResultsHeader,
                               ),
                             ),
