@@ -197,22 +197,6 @@ class _AidConnectScreenState extends State<AidConnectScreen> {
           );
           return Column(
             children: [
-              ElevatedButton(
-                onPressed: () {
-                  throw Exception('Teste de erro FlutterError.onError!');
-                },
-                child: const Text('Forçar Erro de UI'),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  Future.delayed(const Duration(milliseconds: 100), () {
-                    throw Exception(
-                      'Teste de erro assíncrono no PlatformDispatcher!',
-                    );
-                  });
-                },
-                child: const Text('Forçar Erro Assíncrono'),
-              ),
               Header(
                 navigationToProfile: _navigateToProfile,
                 currentUser: widget.user,
