@@ -30,7 +30,7 @@ class _FilterSectionsState extends State<FilterSections> {
         Padding(
           padding: const EdgeInsets.only(left: 8.0),
           child: Text(
-            'Como você gostaria de ajudar?',
+            'Como você gostaria de nos ajudar?',
             style: fontFilterSectionTitle,
           ),
         ),
