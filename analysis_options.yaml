@@ -85,7 +85,7 @@ linter:
 dart_code_linter:
   metrics:
     cyclomatic-complexity: 15
-    maximum-nesting-level: 3 # Evita mais de 2-3 loops/condicionais aninhados
+    maximum-nesting-level: 3
     lines-of-code: 100
   rules:
     - avoid-nested-conditional-expressions
