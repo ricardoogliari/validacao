@@ -49,7 +49,17 @@ fi
 echo -e "${GREEN}✔ Análise estática aprovada (zero warnings/erros).${NC}"
 
 # ------------------------------------------------------------------------------
-# 4. Execução de Testes Unitários Rápidos (flutter test)
+# 4. Verificaçao de complexidade de código
+# ------------------------------------------------------------------------------
+echo -e "\n${BLUE}▶ Verificando complexidade do código (dart_code_linter)...${NC}"
+dart run dart_code_linter:metrics check-unused-code analyze lib --cyclomatic-complexity=15 --maximum-nesting-level=3
+if [ $? -ne 0 ]; then
+  echo -e "\n${RED}❌ Violação de complexidade de código detectada!${NC}"
+  exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# 5. Execução de Testes Unitários Rápidos (flutter test)
 # ------------------------------------------------------------------------------
 echo -e "\n${BLUE}▶ [3/3] Executando testes unitários (flutter test)...${NC}"
 

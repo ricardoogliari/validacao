@@ -81,3 +81,12 @@ linter:
     # --------------------------------------------------------------------------
     sort_pub_dependencies: true
     depend_on_referenced_packages: true
+
+dart_code_linter:
+  metrics:
+    cyclomatic-complexity: 15
+    maximum-nesting-level: 3 # Evita mais de 2-3 loops/condicionais aninhados
+    lines-of-code: 100
+  rules:
+    - avoid-nested-conditional-expressions
+    - avoid-redundant-async
